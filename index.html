@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <title>plugIn</title>
+    <meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+    <link rel="stylesheet" type="text/css" href="css/bootstrap.min.css" />
+    <link rel="stylesheet" type="text/css" href="css/font-awesome.css" />
+    <link rel="stylesheet" type="text/css" href="css/index.css" />
+</head>
+
+<body>
+    <div class="tab js-tab" data-config='{
+            "triggerType":"click",
+            "effect":"fade",
+            "invoke":1,
+            "auto":1000        
+    }'>
+        <ul class="tab-nav">
+            <li class="actived"><a href="javascript:void(0);">新闻</a></li>
+            <li><a href="#">娱乐</a></li>
+            <li><a href="#">电影</a></li>
+            <li><a href="#">科技</a></li>
+        </ul>
+        <div class="content-wrap">
+            <div class="content-item current">
+                <img src="img/1.jpg" alt="">
+            </div>
+            <div class="content-item">
+                <img src="img/2.jpg" alt="">
+            </div>
+            <div class="content-item">
+                <img src="img/3.jpg" alt="">
+            </div>
+            <div class="content-item">
+                <img src="img/4.jpg" alt="">
+            </div>
+        </div>
+    </div>
+</body>
+<script src="js/jquery-1.9.1.min.js" type="text/javascript" charset="utf-8"></script>
+<script src="js/bootstrap.min.js" type="text/javascript" charset="utf-8"></script>
+<script src="js/tab.js" type="text/javascript" charset="utf-8"></script>
+<script type="text/javascript">
+(function(doc, win) {
+    var docEl = doc.documentElement,
+        resizeEvt = 'orientationchange' in window ? 'orientationchange' : 'resize',
+        recalc = function() {
+            var clientWidth = docEl.clientWidth;
+            if (!clientWidth) return;
+            if (clientWidth >= 640) {
+                docEl.style.fontSize = '100px';
+            } else {
+                docEl.style.fontSize = 100 * (clientWidth / 640) + 'px';
+            }
+        };
+
+    if (!doc.addEventListener) return;
+    win.addEventListener(resizeEvt, recalc, false);
+    doc.addEventListener('DOMContentLoaded', recalc, false);
+})(document, window);
+</script>
+<script>
+$(function() {
+    //tabs
+    // var tab1 = new Tab($('.js-tab').eq(0));
+    // // 配参数方法：(不配置则为默认的)
+    // var tab1 = new Tab({
+    //     "triggerType":"click",
+    //     "effect":"fade",
+    //     "invoke":2,
+    //     "auto":5000
+    // });
+    Tab.init($(".js-tab"));
+});
+</script>
+
+</html>
