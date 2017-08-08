@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <style>
+    /* ======= reset start ======= */
+    
+    body {
+        font-family: 'Open Sans', arial, sans-serif;
+        color: #494d55;
+        font-size: 14px;
+        -webkit-font-smoothing: antialiased;
+        -moz-osx-font-smoothing: grayscale;
+    }
+    
+    li {
+        list-style: none;
+    }
+    
+    * {
+        margin: 0;
+        padding: 0;
+    }
+    
+    a {
+        color: #3aa7aa;
+        -webkit-transition: all 0.4s ease-in-out;
+        -moz-transition: all 0.4s ease-in-out;
+        -ms-transition: all 0.4s ease-in-out;
+        -o-transition: all 0.4s ease-in-out;
+    }
+    
+    a:hover {
+        text-decoration: underline;
+        color: #339597;
+    }
+    
+    a:active {
+        text-decoration: none;
+    }
+    
+    a:focus {
+        text-decoration: none;
+    }
+    
+    .btn,
+    a.btn {
+        -webkit-transition: all 0.4s ease-in-out;
+        -moz-transition: all 0.4s ease-in-out;
+        -ms-transition: all 0.4s ease-in-out;
+        -o-transition: all 0.4s ease-in-out;
+        font-weight: 600;
+        font-size: 14px;
+        line-height: 1.5;
+    }
+    
+    .btn .fa,
+    a.btn .fa {
+        margin-right: 5px;
+    }
+    
+    .btn-cta,
+    a.btn-cta {
+        font-weight: bold;
+        font-size: 16px;
+        padding: 10px 30px;
+    }
+    
+    .btn-primary {
+        background: #40babd;
+        border: 1px solid #40babd;
+        color: #fff;
+    }
+    
+    .btn-primary:hover,
+    .btn-primary:focus,
+    .btn-primary:active,
+    .btn-primary.active,
+    .btn-primary.hover {
+        background: #3aa7aa;
+        color: #fff;
+        border: 1px solid #3aa7aa;
+    }
+    /* ======= reset end ======= */
+    /* ======= tab start ======= */
+    
+    .tab {
+        width: 300px;
+    }
+    
+    .tab .tab-nav {
+        height: 30px;
+    }
+    
+    .tab .tab-nav li {
+        float: left;
+        margin-right: 5px;
+        background-color: #767676;
+        border-radius: 3px 3px 0 0;
+    }
+    
+    .tab .tab-nav li.actived {
+        background-color: #fff;
+    }
+    
+    .tab .tab-nav li a {
+        display: block;
+        height: 30px;
+        padding: 0 20px;
+        color: #fff;
+        line-height: 30px;
+        text-decoration: none;
+    }
+    
+    .tab .tab-nav li.actived a {
+        color: #000;
+    }
+    
+    .tab .content-wrap {
+        background-color: #fff;
+        padding: 5px;
+        height: 200px;
+    }
+    
+    .tab .content-wrap .content-item {
+        height: 300px;
+        width: 210px;
+        display: none;
+        position: absolute;
+    }
+    
+    .tab .content-wrap .current {
+        display: block;
+        height: 210px;
+        width: 310px;
+        position: absolute;
+        background-color: red;
+    }
+    </style>
+</head>
+
+<body>
+
+    <body>
+       <!--  <div class="tab js-tab" id="demo1" data-config='{
+            "triggerType":"click",
+            "effect":"fade",
+            "invoke":2,
+            "auto":false   
+    }'> -->
+     <div class="tab js-tab" id="demo1">
+            <ul class="tab-nav">
+                <li class="actived"><a href="javascript:void(0);">新闻</a></li>
+                <li><a href="#">娱乐</a></li>
+                <li><a href="#">电影</a></li>
+                <li><a href="#">科技</a></li>
+            </ul>
+            <div class="content-wrap">
+                <div class="content-item current">
+                    1
+                </div>
+                <div class="content-item">
+                    2
+                </div>
+                <div class="content-item">
+                    3
+                </div>
+                <div class="content-item">
+                    4
+                </div>
+            </div>
+        </div>
+        <div class="tab js-tab" id="demo2">
+            <ul class="tab-nav">
+                <li class="actived"><a href="javascript:void(0);">新闻</a></li>
+                <li><a href="#">娱乐</a></li>
+                <li><a href="#">电影</a></li>
+                <li><a href="#">科技</a></li>
+            </ul>
+            <div class="content-wrap">
+                <div class="content-item current">
+                    1
+                </div>
+                <div class="content-item">
+                    2
+                </div>
+                <div class="content-item">
+                    3
+                </div>
+                <div class="content-item">
+                    4
+                </div>
+            </div>
+        </div>
+        <div class="tab js-tab" id="demo3">
+            <ul class="tab-nav">
+                <li class="actived"><a href="javascript:void(0);">新闻</a></li>
+                <li><a href="#">娱乐</a></li>
+                <li><a href="#">电影</a></li>
+                <li><a href="#">科技</a></li>
+            </ul>
+            <div class="content-wrap">
+                <div class="content-item current">
+                    1
+                </div>
+                <div class="content-item">
+                    2
+                </div>
+                <div class="content-item">
+                    3
+                </div>
+                <div class="content-item">
+                    4
+                </div>
+            </div>
+        </div>
+    </body>
+    <script src="https://cdn.bootcss.com/jquery/1.9.0/jquery.js"></script>
+    <script src="js.js"></script>
+    <script>
+    // var demo1 = new WTab($('.js-tab').eq(0));
+    // var demo1 = new WTab('#demo1');
+    // var demo1 = new WTab('#demo1',{
+    //     "triggerType": "mouseover",
+    //     "effect": "fade",
+    //     "invoke": 1,
+    //     "auto": 2000
+    // });
+    // var demo2 = new WTab('#demo2',{
+    //     "triggerType": "mouseover",
+    //     "effect": "fade",
+    //     "invoke": 2,
+    //     "auto": 500
+    // });
+    // var demo3 = new WTab('#demo3',{
+    //     "triggerType": "click",
+    //     "effect": "fade",
+    //     "invoke": 3,
+    //     "auto": 500
+    // });
+    // WTab.init($('.js-tab'));
+    $('.js-tab').tab().css("backgroundColor",'#000');
+    </script>
+</body>
+
+</html>
