@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="myCart">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+   <link href="http://cdn.bootcss.com/bootstrap/3.3.0/css/bootstrap.min.css" rel="stylesheet">
+    <script src="http://cdn.static.runoob.com/libs/angular.js/1.4.6/angular.min.js"></script>
+</head>
+<body ng-controller="cartCtr">
+<div class="container">
+    <table class="table">
+        <thead>
+            <tr>
+                <th>产品编号</th>
+                <th>产品名字</th>
+                <th>购买数量</th>
+                <th>产品单价</th>
+                <th>产品总价</th>
+                <th>操作</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr ng-repeat="item in cart">
+                <td>{{item.id}}</td>
+                <td>{{item.name}}</td>
+                <td>
+                    <button type="button" ng-click="reduce($index)" class="btn btn-primary">-</button>
+                    <input type="number" id="inp" value="{{item.quantity}}" ng-model="item.quantity"/>
+                    <button type="button" ng-click="add($index)" class="btn btn-primary">+</button>
+                </td>
+                <td>{{item.price}}</td>
+                <td>{{item.quantity*item.price}}</td>
+                <td><button type="button" class="btn btn-danger" ng-click="remove($index)">删除</button></td>
+            </tr>
+            <tr ng-show="!cart.length">
+                <td colspan="6">您的购物车为空</td>
+            </tr>
+            <tr>
+                <td>总购买价格：{{totalPrice()}}</td>
+                <td>总购买数量：{{totalQuantity()}}</td>
+                <td colspan="4" align="center"><button type="button" ng-click="cart={}" class="btn btn-danger">清空购物车</button></td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+<script>
+    var mod=angular.module("myCart",[]);
+    mod.service("cartData",function () {
+        return [
+            {
+                id: 1000,
+                name: 'iphone5s',
+                quantity: 3,
+                price: 4300
+            },
+            {
+                id: 3300,
+                name: 'iphone5',
+                quantity: 30,
+                price: 3300
+            },
+            {
+                id: 232,
+                name: 'imac',
+                quantity: 4,
+                price: 23000
+            },
+            {
+                id: 1400,
+                name: 'ipad',
+                quantity: 5,
+                price: 6900
+            }
+        ];
+    });
+    mod.controller("cartCtr",["$scope","cartData",function($scope,cd){
+        //把注入进来的数据cd，保存到变量cart中
+        $scope.cart=cd;
+        //当点击删除按钮的时候，删除当前购物车的一条数据
+        $scope.remove=function (index) {
+            $scope.cart.splice(index,1);
+        }
+        //得到总购买价格
+        $scope.totalPrice=function () {
+            var total=0;
+            angular.forEach($scope.cart,function (item) {
+                total+=item.price*item.quantity;
+            })
+            return total;
+        }
+        //得到总购买数量
+        $scope.totalQuantity=function () {
+            var total=0;
+            angular.forEach($scope.cart,function (item) {
+                total+=parseInt(item.quantity);
+            })
+            return total;
+        }
+        //点击+号的时候，数量加一
+        $scope.add=function (index) {
+            $scope.cart[index].quantity++;
+        }
+        //点击-号的时候，数量减一，当减到<1的时候，直接删除这一条数据
+        $scope.reduce=function (index) {
+            if($scope.cart[index].quantity>1){
+                $scope.cart[index].quantity--;
+            }else{
+                $scope.remove(index);
+            }
+        }
+        //当购物车某商品的数量小于1时，输入的值指定为oldValue
+        $scope.$watch("cart",function(newValue,oldValue){
+            console.log(newValue,oldValue)
+            angular.forEach(newValue,function (item,key) {
+                if(item.quantity<1){
+                    item.quantity=oldValue[key].quantity;
+                }
+            })
+        },true)
+    }])
+</script>
+</body>
+</html>
